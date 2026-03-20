@@ -371,6 +371,42 @@ h5 > code {
   }
 }
 
+/* Archive styles */
+.archive {
+  margin: var(--spacing-base) 0;
+}
+
+.archive-year {
+  margin: calc(var(--spacing-base) * 1.5) 0 var(--spacing-sm) 0;
+  font-size: 1.2em;
+  color: var(--color-text-primary);
+}
+
+.archive-month {
+  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  font-size: 1.1em;
+  color: var(--color-text-muted);
+}
+
+.archive-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap-small);
+  margin: var(--spacing-sm) 0;
+  padding-left: 1em;
+}
+
+.archive-item time {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  min-width: 2em;
+}
+
+.archive-item a {
+  font-size: var(--font-size-base);
+}
+
 /* Main menu navigation styles */
 .terminal-nav {
   font-family: var(--font-family-mono);
@@ -510,6 +546,12 @@ blockquote > :last-child {
   margin: var(--spacing-md) 0;
 }
 
+.reading-time,
+.lastmod {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
 @media (max-width: 600px) {
   .path-nav li {
     max-width: 100px; /* More aggressive truncation on mobile */
@@ -587,5 +629,4 @@ blockquote > :last-child {
   }
 }
 
-/* Custom defined styles */
-@import "assets/css/custom";
+

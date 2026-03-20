@@ -1,0 +1,30 @@
+{{ define "main" }}
+  <h1>Archive</h1>
+  <div class="archive">
+    {{- $.Scratch.Add "year" "" -}}
+    {{- $.Scratch.Add "month" "" -}}
+    
+    {{- range where site.Pages "Section" "posts" -}}
+      {{- if and (not .Draft) .Date -}}
+        {{- $year := .Date.Format "2006" -}}
+        {{- $month := .Date.Format "January" -}}
+        
+        {{- if ne $year ($.Scratch.Get "year") -}}
+          {{- $.Scratch.Set "year" $year -}}
+          {{- $.Scratch.Set "month" "" -}}
+          <h2 class="archive-year">{{ $year }}</h2>
+        {{- end -}}
+        
+        {{- if ne $month ($.Scratch.Get "month") -}}
+          {{- $.Scratch.Set "month" $month -}}
+          <h3 class="archive-month">{{ $month }}</h3>
+        {{- end -}}
+        
+        <article class="archive-item">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02" }}</time>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </article>
+      {{- end -}}
+    {{- end -}}
+  </div>
+{{ end }}

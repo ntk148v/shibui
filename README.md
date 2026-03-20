@@ -16,6 +16,7 @@
 </div>
 
 Table of contents:
+
 - [Features](#features)
 - [Installation](#installation)
   - [As a Git Submodule](#as-a-git-submodule)
@@ -35,8 +36,8 @@ Table of contents:
 - [Version Requirements](#version-requirements)
 - [Credits](#credits)
 
-|                                                                      |                                                                      |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+|                                                                                                                                  |                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | <img src="https://raw.githubusercontent.com/ntk148v/shibui/refs/heads/master/images/1.png" alt="dark" style="border-radius:1%"/> | <img src="https://raw.githubusercontent.com/ntk148v/shibui/refs/heads/master/images/2.png" alt="dark" style="border-radius:1%"/> |
 | <img src="https://raw.githubusercontent.com/ntk148v/shibui/refs/heads/master/images/3.png" alt="dark" style="border-radius:1%"/> | <img src="https://raw.githubusercontent.com/ntk148v/shibui/refs/heads/master/images/4.png" alt="dark" style="border-radius:1%"/> |
 
@@ -103,6 +104,40 @@ date: 2023-06-13
 tags: ["hugo", "theme"]
 ---
 ```
+
+### Theme Parameters
+
+You can configure theme behavior by adding parameters to your site's `config.toml`:
+
+```toml
+[params]
+  author = "Your Name"
+  email = "your.email@example.com"
+
+  # Enable/disable comments on posts (default: true)
+  comments = true
+
+  # Default table of contents visibility per page (default: true)
+  # Can be overridden per-page with `toc: false` in front matter
+  showtoc = true
+
+  # Show estimated reading time on posts (default: true)
+  showreadingtime = true
+
+  # Show last modified date on posts (default: false)
+  showlastmod = false
+
+  # Social links (optional)
+  twitterHandle = "username"
+  ogImage = "/images/og-image.jpg"
+```
+
+Supported front matter parameters for individual pages:
+
+- `toc` (boolean): Show/hide table of contents (default: true)
+- `comments` (boolean): Enable/disable comments for this page (default: site.Params.comments)
+- `showreadingtime` (boolean): Override reading time display (default: site.Params.showreadingtime)
+- `showlastmod` (boolean): Override last modified date display (default: site.Params.showlastmod)
 
 ## Color Scheme
 
@@ -232,5 +267,5 @@ This theme was inspired by various minimalist designs and the Japanese concept o
 
 - [William Jansson](https://williamjansson.com)
 - The Hugo community
-- [Minimalist design principles](https://en.wikipedia.org/wiki/Minimalism_(computing))
+- [Minimalist design principles](<https://en.wikipedia.org/wiki/Minimalism_(computing)>)
 - Japanese aesthetics, particularly [Shibui](https://en.wikipedia.org/wiki/Shibui)

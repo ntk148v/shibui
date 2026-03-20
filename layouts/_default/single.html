@@ -14,9 +14,21 @@
     </nav>
   {{ end }}
 
-  <!-- Content -->
-  {{ .Content }}
-  <div class="time">{{ partial "date.html" .Date}}</div>
+   <!-- Content -->
+   {{ .Content }}
+   <div class="time">
+     {{ partial "date.html" .Date }}
+     {{ $showReadingTime := .Params.showreadingtime | default site.Params.showreadingtime | default true }}
+     {{ if and $showReadingTime .ReadingTime }}
+       <span class="reading-time"> · {{ .ReadingTime }} min read</span>
+     {{ end }}
+     {{ $showLastMod := .Params.showlastmod | default site.Params.showlastmod | default false }}
+     {{ if and $showLastMod .Lastmod }}
+       {{ if ne .LastMod.Format "2006-01-02" .Date.Format "2006-01-02" }}
+         <span class="lastmod"> · Last updated: {{ .LastMod.Format "2006-01-02" }}</span>
+       {{ end }}
+     {{ end }}
+   </div>
 
   <!-- Comments block -->
   {{ if and .Content (default true (default .Site.Params.comments
