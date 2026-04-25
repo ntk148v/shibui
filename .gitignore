@@ -48,3 +48,21 @@ tags
 # Persistent undo
 [._]*.un~
 
+AGENTS.md
+GEMINI.md
+CLAUDE.md
+
+.tests/
+.plans/
+
+.agent/
+.claude/
+.opencode/
+.qwen/
+.gemini/
+
+.graphify/
+graphify-out/
+.graphify_*.json
+.graphify_python
+
