@@ -1,0 +1,7 @@
+{{ $class := "" }}
+{{ if findRE "^(?:\\d+\\.)+\\s+" .Text 1 }}
+  {{ $class = "manual-number" }}
+{{ end }}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}"{{ with $class }} class="{{ . }}"{{ end }}>
+  {{ .Text | safeHTML }}
+</h{{ .Level }}>

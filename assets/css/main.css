@@ -192,19 +192,19 @@ h5 {
 }
 
 /* nested counters */
-h2::before {
+h2:not(.manual-number)::before {
   content: counter(h2) ". ";
 }
 
-h3::before {
+h3:not(.manual-number)::before {
   content: counter(h2) "." counter(h3) ". ";
 }
 
-h4::before {
+h4:not(.manual-number)::before {
   content: counter(h2) "." counter(h3) "." counter(h4) ". ";
 }
 
-h5::before {
+h5:not(.manual-number)::before {
   content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
 }
 
