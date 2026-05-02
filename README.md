@@ -74,7 +74,7 @@ Add the following to your `config.toml`:
 
 ```toml
 baseURL = 'http://example.org/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Your Site Title'
 theme = "shibui"
 
@@ -99,9 +99,9 @@ In the front matter of your content files:
 
 ```yaml
 ---
-title: "Your Post Title"
+title: 'Your Post Title'
 date: 2023-06-13
-tags: ["hugo", "theme"]
+tags: ['hugo', 'theme']
 ---
 ```
 
