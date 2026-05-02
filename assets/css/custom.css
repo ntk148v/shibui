@@ -1,1 +1,44 @@
 /* You can add custom style here */
+/* Enhanced Table of Contents Styling */
+.toc {
+  position: relative;
+}
+
+.toc-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.toc-title::before {
+  flex-shrink: 0;
+}
+
+/* Visual indicator for TOC depth levels */
+.toc-content ol ol {
+  opacity: 0.85;
+}
+
+.toc-content ol ol ol {
+  opacity: 0.7;
+}
+
+/* Smooth transitions for links in TOC */
+.toc-content a {
+  position: relative;
+}
+
+.toc-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-text-primary);
+  transition: width 0.2s ease-in-out;
+}
+
+.toc-content a:hover::after {
+  width: 100%;
+}

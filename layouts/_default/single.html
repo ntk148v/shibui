@@ -6,12 +6,12 @@
   {{ $hasToC := .Params.toc | default true }}
   {{ $headers := findRE "<h[2-6]" .Content }}
   {{ if and $hasToC (ge (len $headers) 1) }}
-    <nav class="toc">
-      <strong>Table of contents</strong>
-      <div class="toc-content">
+    <details class="toc" open>
+      <summary class="toc-title">Table of contents</summary>
+      <nav class="toc-content">
         {{ .TableOfContents }}
-      </div>
-    </nav>
+      </nav>
+    </details>
   {{ end }}
 
    <!-- Content -->

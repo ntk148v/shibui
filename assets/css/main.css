@@ -525,21 +525,123 @@ blockquote > :last-child {
 /* Table of Contents */
 .toc {
   margin: var(--spacing-base) 0;
-  padding: var(--spacing-sm);
+  padding: 0;
   border: 1px solid var(--color-border);
   background: var(--color-bg-secondary);
   border-radius: var(--pre-border-radius);
   box-shadow: 0 1px 2px 0 var(--color-border);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
-.toc .toc-content a {
+.toc-title {
+  display: block;
+  cursor: pointer;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-weight: bold;
+  user-select: none;
+  transition: background-color 0.2s ease-in-out;
+  list-style: none;
+  position: relative;
+  padding-left: var(--spacing-lg);
+}
+
+.toc-title:hover {
+  background: var(--color-bg-primary);
+}
+
+/* Custom disclosure triangle for details/summary */
+.toc-title::before {
+  content: "▶";
+  position: absolute;
+  left: var(--spacing-sm);
+  transition: transform 0.2s ease-in-out;
+  display: inline-block;
+  width: 1em;
+}
+
+details[open] > .toc-title::before {
+  transform: rotate(90deg);
+}
+
+.toc-content {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+  animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 100vh;
+  }
+}
+
+.toc-content a {
   text-decoration: none;
   color: var(--color-text-primary);
   font-size: var(--font-size-small);
+  transition: color 0.15s ease-in-out;
 }
 
-.toc .toc-content ol li {
-  list-style-type: disc !important;
+.toc-content a:hover {
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* CSS Counters for hierarchical numbering */
+.toc-content {
+  counter-reset: level1;
+}
+
+.toc-content ol {
+  list-style: none;
+  margin-left: 1.5rem;
+  padding: 0;
+  counter-reset: level2;
+}
+
+.toc-content ol li {
+  margin: var(--spacing-xs) 0;
+  counter-increment: level1;
+}
+
+.toc-content ol li::before {
+  content: counter(level1) ". ";
+}
+
+.toc-content ol ol {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  counter-reset: level2;
+}
+
+.toc-content ol ol li {
+  counter-increment: level2;
+}
+
+.toc-content ol ol li::before {
+  content: counter(level1) "." counter(level2) ". ";
+}
+
+.toc-content ol ol ol {
+  counter-reset: level3;
+}
+
+.toc-content ol ol ol li {
+  counter-increment: level3;
+}
+
+.toc-content ol ol ol li::before {
+  content: counter(level1) "." counter(level2) "." counter(level3) ". ";
+}
+
+.toc-content ol ol ol ol li::before {
+  content: counter(level1) "." counter(level2) "." counter(level3) "." counter(level4) ". ";
 }
 
 .time {
