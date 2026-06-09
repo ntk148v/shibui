@@ -584,7 +584,6 @@ details[open] > .toc-title::before {
 .toc-content a {
   text-decoration: none;
   color: var(--color-text-primary);
-  font-size: var(--font-size-small);
   transition: color 0.15s ease-in-out;
 }
 
@@ -596,6 +595,7 @@ details[open] > .toc-title::before {
 /* CSS Counters for hierarchical numbering */
 .toc-content {
   counter-reset: level1;
+  font-size: var(--font-size-small);
 }
 
 .toc-content ol {
