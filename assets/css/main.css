@@ -1,10 +1,11 @@
 :root {
   /* Typography */
   --spacing-base: 1.5em;
+  --font-family-sans: sans-serif;
   --font-family-mono: monospace;
-  --font-size-base: 0.75rem;
-  --font-size-small: 0.65rem;
-  --font-size-code: 0.75rem;
+  --font-size-base: 1rem;
+  --font-size-small: 0.85rem;
+  --font-size-code: 0.85rem;
 
   /* Spacing */
   --spacing-xs: calc(var(--spacing-base) * 0.25);
@@ -134,7 +135,7 @@ html {
 }
 
 body {
-  font: var(--font-size-base) / var(--spacing-base) var(--font-family-mono);
+  font: var(--font-size-base) / var(--spacing-base) var(--font-family-sans);
   background: var(--color-bg-primary);
   min-height: 100%;
   display: grid;
@@ -146,12 +147,8 @@ body {
 }
 
 a {
-  display: inline-block;
-  margin-left: -0.16666em;
   text-decoration: none;
   border-bottom: 1px dotted;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 
 a:hover {
@@ -279,7 +276,6 @@ h5 > code {
 
 /* Path navigation styles */
 .path-nav {
-  font-family: var(--font-family-mono);
   padding: var(--spacing-base) 0;
   white-space: nowrap;
   overflow-x: auto;
@@ -406,7 +402,6 @@ h5 > code {
 }
 
 .archive-item time {
-  font-family: var(--font-family-mono);
   font-size: var(--font-size-small);
   color: var(--color-text-muted);
   min-width: 2em;
@@ -418,7 +413,6 @@ h5 > code {
 
 /* Main menu navigation styles */
 .terminal-nav {
-  font-family: var(--font-family-mono);
   border-top: 1px solid var(--color-border);
   margin-top: calc(var(--spacing-base) * 2);
   padding-top: var(--spacing-base);
