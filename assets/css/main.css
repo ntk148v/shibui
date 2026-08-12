@@ -140,15 +140,20 @@ body {
   min-height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(auto, var(--container-width));
+  grid-template-columns: minmax(0, var(--container-width));
   justify-content: center;
   padding: var(--spacing-lg);
   gap: var(--spacing-lg);
 }
 
+body > * {
+  min-width: 0;
+}
+
 a {
   text-decoration: none;
   border-bottom: 1px dotted;
+  overflow-wrap: anywhere;
 }
 
 a:hover {
