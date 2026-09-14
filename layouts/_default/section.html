@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <div class="feed">
+    {{ range .Pages }}
+      <article class="post">
+        <header class="post-header">
+          <h1 class="post-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h1>
+
+          <time
+            class="post-date"
+            datetime="{{ .Date.Format "2006-01-02" }}"
+          >
+            {{ .Date.Format "January 02, 2006" }}
+          </time>
+        </header>
+
+        <div class="post-body">
+          {{ .Content }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,32 @@
+<nav class="nav" aria-label="Main menu">
+  <div class="nav-inner">
+    <header class="masthead">
+      <a class="site-title" href="{{ "/" | relURL }}">
+        {{ .Site.Title }}
+      </a>
+    </header>
+
+    <div class="nav-links">
+      {{ range .Site.Menus.main }}
+        {{ $active := false }}
+
+        {{ if $.IsHome }}
+          {{ if eq .Identifier "quotes" }}
+            {{ $active = true }}
+          {{ end }}
+        {{ else if eq $.Section .Identifier }}
+          {{ $active = true }}
+        {{ end }}
+
+        <a
+          class="nav-link{{ if $active }} is-active{{ end }}"
+          href="{{ .URL | relURL }}"
+          {{ if $active }}aria-current="page"{{ end }}
+        >
+          {{ .Name }}
+        </a>
+      {{ end }}
+    </div>
+
+  </div>
+</nav>

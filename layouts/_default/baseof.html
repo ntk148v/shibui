@@ -1,15 +1,14 @@
-<!doctype html>
-<html
-  lang="{{ site.Language.Locale }}"
-  dir="{{ or site.Language.Direction `ltr` }}"
->
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
   <head>
     {{ partial "head.html" . }}
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to content</a>
-    <header role="banner">{{ partial "header.html" . }}</header>
-    <main id="main-content" role="main">{{ block "main" . }}{{ end }}</main>
-    <footer role="contentinfo">{{ partial "footer.html" . }}</footer>
+    <div class="layout">
+      {{ partial "nav.html" . }}
+      <main class="content" id="main">
+        {{ block "main" . }}{{ end }}
+      </main>
+    </div>
   </body>
 </html>

@@ -1,6 +1,19 @@
 {{ define "main" }}
-  {{ .Content }}
-  <div class="terminal-nav">
-    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  <div class="feed">
+    {{ $quotes := where .Site.RegularPages "Section" "quotes" }}
+    {{ range $quotes }} 
+      <article class="post">
+        <header class="post-header">
+          <h1 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+          <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 02, 2006" }}</time>
+        </header>
+        <div class="post-body">
+          {{ .Content }}
+        </div>
+<!--         <footer class="post-footer">
+          <a class="read-more" href="{{ .RelPermalink }}">Read more &rarr;</a>
+        </footer> -->
+      </article>
+    {{ end }}
   </div>
 {{ end }}

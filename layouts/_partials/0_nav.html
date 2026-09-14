@@ -1,0 +1,29 @@
+<nav class="nav" aria-label="Main menu">
+  <div class="nav-inner">
+    <header class="masthead">
+      <a class="site-title" href="{{ "/" | relURL }}">
+        {{ .Site.Title }}
+      </a> 
+    </header>
+
+
+  {{ range .Site.Menus.main }}
+  
+      <a
+        href="{{ .URL | relURL }}"
+        {{ if or (eq $.Section .Identifier) (and $.IsHome .Params.activeOnHome) }}
+          aria-current="page"
+          class="is-active"
+        {{ end }}
+      >
+        {{ .Name }}
+      </a>
+   
+  {{ end }}
+
+
+
+
+
+  </div>
+</nav>
