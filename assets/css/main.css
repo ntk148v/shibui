@@ -113,7 +113,6 @@ select:focus-visible {
   margin: 0;
   padding: 0;
   font: inherit;
-  color: var(--color-text-primary);
   box-sizing: border-box;
 }
 
@@ -135,6 +134,7 @@ html {
 
 body {
   font: var(--font-size-base) / var(--spacing-base) var(--font-family-mono);
+  color: var(--color-text-primary);
   background: var(--color-bg-primary);
   min-height: 100%;
   display: grid;
@@ -793,5 +793,4 @@ details[open] > .toc-title::before {
     grid-template-columns: 1fr minmax(auto, 72ch) 1fr;
   }
 }
-
 
