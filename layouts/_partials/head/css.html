@@ -1,19 +1,14 @@
-{{- with resources.Get "css/main.css" }}
-  {{- if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{- end }}
-  {{- end }}
+{{- $main := resources.Get "css/main.css" }}
+{{- $custom := resources.Get "css/custom.css" }}
+{{- $bundle := slice $main }}
+{{- if $custom }}
+  {{- $bundle = $bundle | append $custom }}
 {{- end }}
-
-{{- with resources.Get "css/custom.css" }}
-  {{- if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{- end }}
+{{- $css := $bundle | resources.Concat "css/shibui.css" }}
+{{- if hugo.IsDevelopment }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- else }}
+  {{- with $css | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
   {{- end }}
 {{- end }}

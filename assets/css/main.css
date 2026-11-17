@@ -45,33 +45,6 @@
   --inline-border-radius: 0.375rem;
   --gap-base: 1em;
   --gap-small: 0.5em;
-
-  /* Breakpoints */
-  --breakpoint-mobile: 600px;
-}
-
-/* Common component styles */
-.no-scrollbar {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
-.list-unstyled {
-  list-style: none;
-  margin-left: 0;
-}
-
-.text-muted {
-  color: var(--color-text-muted);
-}
-
-.no-underline {
-  text-decoration: none;
-  border-bottom: none;
 }
 
 ::selection {
@@ -127,7 +100,7 @@ ol {
 }
 
 html {
-  margin: 0 0 0 calc(100vw - 100%);
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
   height: 100%;
 }
@@ -382,6 +355,26 @@ h5 > code {
 
   .time-list time {
     font-size: var(--font-size-small);
+  }
+
+  .path-nav li {
+    max-width: 100px; /* More aggressive truncation on mobile */
+  }
+
+  .path-nav li:first-child {
+    max-width: none; /* Don't truncate site title */
+  }
+
+  .path-nav li.current {
+    max-width: 150px; /* Allow slightly more width for current page on mobile */
+  }
+
+  body {
+    padding: var(--spacing-md);
+  }
+
+  pre {
+    max-width: calc(100vw - 4em);
   }
 }
 
@@ -671,30 +664,6 @@ details[open] > .toc-title::before {
 .lastmod {
   color: var(--color-text-muted);
   font-size: var(--font-size-small);
-}
-
-@media (max-width: 600px) {
-  .path-nav li {
-    max-width: 100px; /* More aggressive truncation on mobile */
-  }
-
-  .path-nav li:first-child {
-    max-width: none; /* Don't truncate site title */
-  }
-
-  .path-nav li.current {
-    max-width: 150px; /* Allow slightly more width for current page on mobile */
-  }
-}
-
-@media (max-width: 600px) {
-  body {
-    padding: var(--spacing-md);
-  }
-
-  pre {
-    max-width: calc(100vw - 4em);
-  }
 }
 
 /* Print styles */
