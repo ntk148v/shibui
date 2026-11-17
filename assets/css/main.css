@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   /* Typography */
   --spacing-base: 1.5em;
   --font-family-mono: monospace;
@@ -45,6 +47,12 @@
   --inline-border-radius: 0.375rem;
   --gap-base: 1em;
   --gap-small: 0.5em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-l: 12%;
+  }
 }
 
 ::selection {
@@ -122,6 +130,7 @@ body > * {
 }
 
 a {
+  color: inherit;
   text-decoration: none;
   border-bottom: 1px dotted;
   word-wrap: break-word;
@@ -213,6 +222,40 @@ pre code {
   padding: 0;
   font-size: inherit;
   color: inherit;
+}
+
+/* Syntax highlighting (Chroma, noClasses = false) */
+.chroma {
+  background: none;
+}
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr,
+.chroma .kt {
+  font-weight: bold;
+}
+.chroma .c,
+.chroma .c1,
+.chroma .cm,
+.chroma .cs,
+.chroma .cp {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+.chroma .s,
+.chroma .s1,
+.chroma .s2,
+.chroma .sb,
+.chroma .sc,
+.chroma .sd,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx {
+  color: var(--color-text-primary);
 }
 
 p > code,
