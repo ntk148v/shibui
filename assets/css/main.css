@@ -2,9 +2,9 @@
   /* Typography */
   --spacing-base: 1.5em;
   --font-family-mono: monospace;
-  --font-size-base: 0.75rem;
-  --font-size-small: 0.65rem;
-  --font-size-code: 0.75rem;
+  --font-size-base: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-code: 0.875rem;
 
   /* Spacing */
   --spacing-xs: calc(var(--spacing-base) * 0.25);
@@ -62,7 +62,6 @@
   border: 1px solid var(--color-border);
   z-index: 1000;
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
 }
 
 .skip-link:focus {
@@ -123,11 +122,8 @@ body > * {
 }
 
 a {
-  display: inline-block;
-  margin-left: -0.16666em;
   text-decoration: none;
   border-bottom: 1px dotted;
-  white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: anywhere;
 }
@@ -209,7 +205,6 @@ pre {
   line-height: 1.6;
   color: var(--color-text-code);
   overflow-x: auto;
-  box-shadow: 0 1px 2px 0 var(--color-border);
 }
 
 pre code {
@@ -292,6 +287,7 @@ h5 > code {
 }
 
 .path-nav li a {
+  display: inline-block;
   text-decoration: none;
   border-bottom: none;
   padding: 0 0.25em;
@@ -466,9 +462,6 @@ img {
   max-width: 100%;
   height: auto;
   margin: var(--spacing-base) auto;
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--pre-border-radius);
 }
 
 figure {
@@ -522,7 +515,6 @@ blockquote {
   border: 1px solid var(--color-border);
   border-radius: var(--pre-border-radius);
   background: var(--color-bg-secondary);
-  box-shadow: 0 1px 2px 0 var(--color-border);
   font-style: italic;
 }
 
@@ -541,9 +533,7 @@ blockquote > :last-child {
   border: 1px solid var(--color-border);
   background: var(--color-bg-secondary);
   border-radius: var(--pre-border-radius);
-  box-shadow: 0 1px 2px 0 var(--color-border);
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
 }
 
 .toc-title {
@@ -552,7 +542,6 @@ blockquote > :last-child {
   padding: var(--spacing-sm) var(--spacing-md);
   font-weight: bold;
   user-select: none;
-  transition: background-color 0.2s ease-in-out;
   list-style: none;
   position: relative;
   padding-left: var(--spacing-lg);
@@ -567,36 +556,22 @@ blockquote > :last-child {
   content: "▶";
   position: absolute;
   left: var(--spacing-sm);
-  transition: transform 0.2s ease-in-out;
   display: inline-block;
   width: 1em;
 }
 
 details[open] > .toc-title::before {
-  transform: rotate(90deg);
+  content: "▼";
 }
 
 .toc-content {
   padding: var(--spacing-md);
   border-top: 1px solid var(--color-border);
-  animation: slideDown 0.3s ease-in-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 100vh;
-  }
 }
 
 .toc-content a {
   text-decoration: none;
   color: var(--color-text-primary);
-  transition: color 0.15s ease-in-out;
 }
 
 .toc-content a:hover {
@@ -719,52 +694,4 @@ details[open] > .toc-title::before {
   }
 }
 
-/* ==============================================
-   Layout: 1/3 screen width main content (large)
-   ==============================================
-   On large screens, switches from a single-column
-   centered layout to a 3-column grid. All direct
-   children (header, main, footer) sit in the
-   center column, giving the content a focused,
-   spacious look with generous gutters.
-
-   The column widths are proportional: the center
-   is capped for readability while the side gutters
-   split the remaining space evenly via 1fr.
-
-   On smaller screens (<1024px), the default
-   single-column layout takes over for maximum
-   usable width.
-
-   Center column scaling:
-     < 1024px  → default (full width, single col)
-   1024–1400px → ~50ch max (~1/2 viewport at 1024)
-   1400–1800px → ~60ch max (~1/3 viewport at 1800)
-   1800px+     → ~72ch max (~1/3 viewport at 2160)
-   ============================================ */
-
-@media (min-width: 1024px) {
-  body {
-    grid-template-columns: 1fr minmax(auto, 50ch) 1fr;
-    justify-content: unset;
-    padding: var(--spacing-lg) 0;
-    gap: 0;
-  }
-
-  body > * {
-    grid-column: 2;
-  }
-}
-
-@media (min-width: 1400px) {
-  body {
-    grid-template-columns: 1fr minmax(auto, 60ch) 1fr;
-  }
-}
-
-@media (min-width: 1800px) {
-  body {
-    grid-template-columns: 1fr minmax(auto, 72ch) 1fr;
-  }
-}
 
