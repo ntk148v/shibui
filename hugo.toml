@@ -1,25 +1,4 @@
-baseURL = 'https://example.org/'
-locale = 'en-US'
-title = 'My New Hugo Site'
-
-[menus]
-  [[menus.main]]
-    name = 'Home'
-    pageRef = '/'
-    weight = 10
-
-  [[menus.main]]
-    name = 'Posts'
-    pageRef = '/posts'
-    weight = 20
-
-  [[menus.main]]
-    name = 'Tags'
-    pageRef = '/tags'
-    weight = 30
-
 [module]
   [module.hugoVersion]
     extended = false
-    min = '0.93.0'
-
+    min = '0.158.0'

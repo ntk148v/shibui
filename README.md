@@ -10,7 +10,7 @@
    <img alt="GitHub stars" src="https://img.shields.io/github/stars/ntk148v/shibui?style=for-the-badge">
   </a>
   <a href="https://gohugo.io">
-   <img alt="Hugo" src="https://img.shields.io/badge/hugo-0.93.0-blue.svg?style=for-the-badge">
+   <img alt="Hugo" src="https://img.shields.io/badge/hugo-0.158.0-blue.svg?style=for-the-badge">
   </a>
  </p>
 </div>
@@ -23,6 +23,12 @@ Table of contents:
   - [Configuration](#configuration)
   - [Page Configuration](#page-configuration)
 - [Color Scheme](#color-scheme)
+- [Dark Mode](#dark-mode)
+- [Syntax Highlighting](#syntax-highlighting)
+- [Table of Contents Numbering](#table-of-contents-numbering)
+- [Archive Page](#archive-page)
+- [Diagrams](#diagrams)
+- [Images](#images)
 - [Customization](#customization)
   - [CSS Variables](#css-variables)
 - [Contributing](#contributing)
@@ -52,12 +58,11 @@ Table of contents:
 - Paper-like color scheme
 - Automatic dark/light theme support
 - Nested heading counters
-- Zero JavaScript (pure CSS solutions)
+- No JavaScript, except Mermaid on pages that use diagrams
 - Highly customizable through CSS variables
 - Mobile-responsive layout
 - Table of Contents support
 - Tags support
-- Customizable
 
 ## Installation
 
@@ -79,8 +84,12 @@ title = 'Your Site Title'
 theme = "shibui"
 
 [params]
+  # Author can be a string or a table with name/email
   author = "Your Name"
-  email = "your.email@example.com"
+  # or:
+  # [params.author]
+  # name = "Your Name"
+  # email = "your.email@example.com"
 
 [menu]
   [[menu.main]]
@@ -111,15 +120,15 @@ You can configure theme behavior by adding parameters to your site's `config.tom
 
 ```toml
 [params]
+  # Author can be a string or a table with name/email
   author = "Your Name"
-  email = "your.email@example.com"
+  # or:
+  # [params.author]
+  # name = "Your Name"
+  # email = "your.email@example.com"
 
   # Enable/disable comments on posts (default: true)
   comments = true
-
-  # Default table of contents visibility per page (default: true)
-  # Can be overridden per-page with `toc: false` in front matter
-  showtoc = true
 
   # Show estimated reading time on posts (default: true)
   showreadingtime = true
@@ -172,13 +181,83 @@ The theme uses a paper-like color palette, use a background primary color as bas
 );
 ```
 
+## Dark Mode
+
+The theme follows the OS preference via `prefers-color-scheme`. In dark mode the base lightness (`--bg-l`) is set to `12%`; in light mode it defaults to `99%`.
+
+To force one scheme regardless of the OS, override the knobs in your site's `assets/css/custom.css`. A `:root` rule there overrides both light and dark modes:
+
+```css
+:root {
+  --bg-l: 12%; /* always dark */
+}
+```
+
+The safe `--bg-l` range is ≤ 25% (dark) or ≥ 85% (light). Values in between can break the contrast of the derived text colors.
+
+## Syntax Highlighting
+
+The theme ships with minimal monochrome syntax colours for class-based Chroma output. Set in your `config.toml`:
+
+```toml
+[markup.highlight]
+  noClasses = false
+```
+
+With `noClasses = false`, Chroma emits `<span class="k">…</span>` etc. and the theme styles them: keywords are bold, comments are italic and muted, strings use the primary text colour.
+
+With `noClasses = true`, Chroma emits inline `style="…"` colours and the theme's rules do not apply.
+
+## Table of Contents Numbering
+
+The table of contents is numbered automatically via CSS counters. To enable ordered numbering, set in your `config.toml`:
+
+```toml
+[markup.tableOfContents]
+  ordered = true
+```
+
+## Archive Page
+
+Create a page with `layout: archive` to render a year/month-grouped list of posts from the `posts` section:
+
+```yaml
+---
+title: Archive
+layout: archive
+---
+```
+
+## Diagrams
+
+Use a `mermaid` fenced code block to embed a diagram. The Mermaid script is loaded only on pages that contain at least one `mermaid` block (pinned to a specific version):
+
+````markdown
+```mermaid
+graph LR
+  A[Start] --> B{Decision}
+  B -->|Yes| C[Do it]
+  B -->|No| D[Stop]
+```
+````
+
+## Images
+
+When an image has a title in its Markdown syntax, the title becomes a `<figcaption>`:
+
+```markdown
+![Alt text](image.png "This becomes the caption")
+```
+
+Images without a title render as a bare `<img>` (no `<figure>` wrapper).
+
 ## Customization
 
 ### CSS Variables
 
-You can customize the theme by overriding CSS variables in your `assets/css/custom.css`:
+Create an `assets/css/custom.css` file in your site. It replaces the theme's (empty) `custom.css` and is bundled after `main.css` into one stylesheet, so your rules override the theme's.
 
-For example, you want to create a dark theme, just adjust the base color.
+For example, to force a dark theme, just adjust the base color:
 
 ```css
 :root {
@@ -213,7 +292,7 @@ shibui/
 ├── archetypes/          # Content template files
 ├── assets/
 │   ├── css/            # Theme CSS files
-│   └── js/             # Theme JavaScript files
+│   └── favicon_io/     # Favicon manifest
 ├── layouts/            # Template files
 │   ├── _default/       # Default templates
 │   ├── _partials/      # Reusable template parts
@@ -227,6 +306,8 @@ shibui/
 - `layouts/_default/baseof.html`: Base template with common layout
 - `layouts/_default/single.html`: Template for individual pages
 - `layouts/_default/list.html`: Template for section pages
+- `layouts/_default/archive.html`: Template for the archive page (`layout: archive`)
+- `layouts/_default/_markup/`: Render hooks for Markdown elements (images, code blocks)
 - `layouts/_partials/`: Contains reusable components like header, footer
 - `layouts/index.html`: Homepage template
 
@@ -235,7 +316,6 @@ shibui/
 The theme uses a minimal set of assets:
 
 - CSS: Single stylesheet with CSS variables for customization
-- JS: Optional JavaScript for enhanced functionality
 - Static: Basic favicon and other static assets
 
 ### ExampleSite
@@ -253,13 +333,12 @@ Since the theme is installed as a Git submodule, you can update it to the latest
 
 ```bash
 cd themes/shibui
-git pull origin main
+git pull origin master
 ```
 
 ## Version Requirements
 
-- Hugo Extended v0.93.0 or higher
-- Go 1.18 or higher (for Hugo modules)
+- Hugo v0.158.0 or higher
 
 ## Credits
 
