@@ -102,6 +102,8 @@ theme = "shibui"
     weight = 2
 ```
 
+If your site does not define a `main` menu, the theme provides a default one (Home, Posts, Tags).
+
 ### Page Configuration
 
 In the front matter of your content files:
