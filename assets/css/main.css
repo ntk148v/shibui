@@ -4,9 +4,9 @@
   /* Typography */
   --spacing-base: 1.5em;
   --font-family-mono: monospace;
-  --font-size-base: 1rem;
-  --font-size-small: 0.875rem;
-  --font-size-code: 0.875rem;
+  --font-size-base: 0.75rem;
+  --font-size-small: 0.65rem;
+  --font-size-code: 0.75rem;
 
   /* Spacing */
   --spacing-xs: calc(var(--spacing-base) * 0.25);

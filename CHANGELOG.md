@@ -26,7 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed unused CSS rules and merged media queries
 - Removed box-shadows, transitions, and animations for a calmer look
 - Favicon set reduced to the essentials; manifest moved to `assets/`
-- Larger default font sizes (base 1rem, small and code 0.875rem)
 - `--container-width` is now the only column width rule on all screen sizes
 - Links are inline and use the text colour; images have no border or padding
 - Minimum Hugo version is now v0.158.0
