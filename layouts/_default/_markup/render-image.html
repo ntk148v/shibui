@@ -1,20 +1,11 @@
-{{- $alt := .Text -}} {{- $src := .Destination -}} {{- $title := .Title -}}
-
+{{- $alt := .Text -}}
+{{- $src := .Destination -}}
+{{- $title := .Title -}}
+{{- if $title -}}
 <figure>
-  <img
-    src="{{ $src }}"
-    alt="{{ $alt }}"
-    loading="lazy"
-    {{
-    with
-    $title
-    }}
-    title="{{ . }}"
-    {{
-    end
-    }}
-  />
-  {{- with $alt }}
-  <figcaption>{{ . }}</figcaption>
-  {{ end -}}
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+  <figcaption>{{ $title }}</figcaption>
 </figure>
+{{- else -}}
+<img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+{{- end -}}

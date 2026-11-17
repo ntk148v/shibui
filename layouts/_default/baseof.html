@@ -8,9 +8,9 @@
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <header role="banner">{{ partial "header.html" . }}</header>
-    <main id="main-content" role="main">{{ block "main" . }}{{ end }}</main>
-    <footer role="contentinfo">{{ partial "footer.html" . }}</footer>
+    <header>{{ partial "header.html" . }}</header>
+    <main id="main-content">{{ block "main" . }}{{ end }}</main>
+    <footer>{{ partial "footer.html" . }}</footer>
     {{ if .Store.Get "hasMermaid" }}
     <script
       src="https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js"
