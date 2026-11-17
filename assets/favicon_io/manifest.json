@@ -1,0 +1,10 @@
+{
+  "name": {{ site.Title | jsonify }},
+  "icons": [
+    {
+      "src": {{ "favicon_io/android-icon-192x192.png" | relURL | jsonify }},
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,17 +1,6 @@
-<link rel="apple-touch-icon" sizes="57x57" href="{{ "favicon_io/apple-icon-57x57.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="60x60" href="{{ "favicon_io/apple-icon-60x60.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="72x72" href="{{ "favicon_io/apple-icon-72x72.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="76x76" href="{{ "favicon_io/apple-icon-76x76.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="114x114" href="{{ "favicon_io/apple-icon-114x114.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="120x120" href="{{ "favicon_io/apple-icon-120x120.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="144x144" href="{{ "favicon_io/apple-icon-144x144.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="152x152" href="{{ "favicon_io/apple-icon-152x152.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ "favicon_io/apple-icon-180x180.png" | relURL }}">
-<link rel="icon" type="image/png" sizes="192x192"  href="{{ "favicon_io/android-icon-192x192.png"  | relURL }}">
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon_io/favicon-32x32.png" | relURL }}">
-<link rel="icon" type="image/png" sizes="96x96" href="{{ "favicon_io/favicon-96x96.png" | relURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon_io/favicon-16x16.png" | relURL }}">
-<link rel="manifest" href="{{ "favicon_io/manifest.json" | relURL }}">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{ "favicon_io/ms-icon-144x144.png" | relURL }}">
-<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "favicon_io/apple-icon-180x180.png" | relURL }}">
+{{ $manifest := resources.Get "favicon_io/manifest.json" | resources.ExecuteAsTemplate "favicon_io/manifest.json" . }}
+<link rel="manifest" href="{{ $manifest.RelPermalink }}">
