@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        hugo: ["0.158.0", "latest"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Hugo
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.hugo }}" = "latest" ]; then
+            VERSION=$(curl -fsSL -H "Authorization: Bearer ${{ github.token }}" https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r .tag_name | sed 's/^v//')
+          else
+            VERSION=${{ matrix.hugo }}
+          fi
+          wget -O "${{ runner.temp }}/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Show Hugo version
+        run: hugo version
+
+      - name: Build example site
+        working-directory: exampleSite
+        run: |
+          set -euo pipefail
+          hugo --themesDir ../.. --gc --minify -d "${{ runner.temp }}/public"
+
+      - name: Run mobile layout tests
+        run: bash tests/mobile-layout.sh
