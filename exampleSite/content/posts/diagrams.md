@@ -219,3 +219,13 @@ Created from <https://arthursonzogni.com/Diagon/#Tree>
 │LITERAL   : """" character { character } """" .│
 └────────────────────────────────────────────────┘
 ```
+
+## Mermaid Diagrams
+
+Mermaid is rendered on demand by a render hook, so the script only loads on pages that use it.
+
+```mermaid
+flowchart LR
+    A[Author] --> B[Build]
+    B --> C[Publish]
+```

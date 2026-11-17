@@ -11,5 +11,15 @@
     <header role="banner">{{ partial "header.html" . }}</header>
     <main id="main-content" role="main">{{ block "main" . }}{{ end }}</main>
     <footer role="contentinfo">{{ partial "footer.html" . }}</footer>
+    {{ if .Store.Get "hasMermaid" }}
+    <script
+      src="https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js"
+      integrity="sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true, theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "neutral" });
+    </script>
+    {{ end }}
   </body>
 </html>
