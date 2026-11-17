@@ -53,7 +53,7 @@ Articles */}} {{ if .IsPage }}
     {{- with .Site.Params.author }},
     "author": {
       "@type": "Person",
-      "name": "{{ .name | default . }}"
+      "name": "{{ if reflect.IsMap . }}{{ .name }}{{ else }}{{ . }}{{ end }}"
     }
     {{- end }}
     {{- with $.Description | default $.Site.Params.description }},

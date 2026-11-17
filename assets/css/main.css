@@ -390,6 +390,11 @@ h5 > code {
   margin: var(--spacing-base) 0;
 }
 
+.archive h2::before,
+.archive h3::before {
+  content: none;
+}
+
 .archive-year {
   margin: calc(var(--spacing-base) * 1.5) 0 var(--spacing-sm) 0;
   font-size: 1.2em;

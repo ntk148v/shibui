@@ -24,8 +24,8 @@
      {{ end }}
      {{ $showLastMod := .Params.showlastmod | default site.Params.showlastmod | default false }}
      {{ if and $showLastMod .Lastmod }}
-       {{ if ne .LastMod.Format "2006-01-02" .Date.Format "2006-01-02" }}
-         <span class="lastmod"> · Last updated: {{ .LastMod.Format "2006-01-02" }}</span>
+       {{ if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
+         <span class="lastmod"> · Last updated: {{ .Lastmod.Format "2006-01-02" }}</span>
        {{ end }}
      {{ end }}
    </div>
@@ -37,15 +37,13 @@
     <div class="comments">{{- partial "comments" . -}}</div>
   {{ end }}
 
-  {{ if not .IsHome }}
-    <div class="terminal-nav">
-      <div class="back-nav">
-        {{ with .Parent }}
-          <a href="{{ .RelPermalink }}" class="back-link">../</a>
-        {{ else }}
-          <a href="{{ "/" | relURL }}" class="back-link">../</a>
-        {{ end }}
-      </div>
+  <div class="terminal-nav">
+    <div class="back-nav">
+      {{ with .Parent }}
+        <a href="{{ .RelPermalink }}" class="back-link">../</a>
+      {{ else }}
+        <a href="{{ "/" | relURL }}" class="back-link">../</a>
+      {{ end }}
     </div>
-  {{ end }}
+  </div>
 {{ end }}
